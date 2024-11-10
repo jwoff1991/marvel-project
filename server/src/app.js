@@ -16,6 +16,21 @@ app.get('/status', (req, res) => {
   });
 });
 
+//post login route
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  if (username === 'admin' && password === 'admin') {
+    res.send({
+      message: 'Login successful',
+      token: '1234567890'
+    });
+  } else {
+    res.status(401).send({
+      message: 'Login failed'
+    });
+  }
+});
+
 // Start server
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Server is running on port ${process.env.PORT || 3000}`);
